@@ -1,25 +1,38 @@
-#ifndef DISPLAY_MANAGER_H
-#define DISPLAY_MANAGER_H
+#ifndef DISPLAYMANAGER_H
+#define DISPLAYMANAGER_H
+
 
 #include <Arduino.h>
 #include <TFT_eSPI.h>
 
 
+
 class DisplayManager
 {
+
+private:
+
+    TFT_eSPI tft;
+
+
 
 public:
 
     void begin();
 
+
     void clear();
 
-    void title(String text);
 
-    void body(String text);
+    void body(
+        String text,
+        int x,
+        int y
+    );
 
 
 };
+
 
 
 extern DisplayManager Display;

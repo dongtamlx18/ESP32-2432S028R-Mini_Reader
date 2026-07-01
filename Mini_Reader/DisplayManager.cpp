@@ -1,24 +1,26 @@
 #include "DisplayManager.h"
-
-
-TFT_eSPI tft = TFT_eSPI();
-
+#include <LittleFS.h>
 
 DisplayManager Display;
 
 
+
 void DisplayManager::begin()
 {
-     pinMode(21, OUTPUT);
+    pinMode(21, OUTPUT);
 
     digitalWrite(21, HIGH);
-    
     tft.init();
+
 
     tft.setRotation(1);
 
-    tft.fillScreen(TFT_BLACK);
 
+    tft.fillScreen(
+        TFT_BLACK
+    );
+
+    tft.loadFont("NotoSans-Regular14", LittleFS);
 }
 
 
@@ -26,32 +28,35 @@ void DisplayManager::begin()
 void DisplayManager::clear()
 {
 
-    tft.fillScreen(TFT_BLACK);
+    tft.fillScreen(
+        TFT_BLACK
+    );
 
 }
 
 
 
-void DisplayManager::title(String text)
+void DisplayManager::body(
+String text,
+int x,
+int y
+)
 {
 
-    tft.setTextColor(TFT_YELLOW);
-
-    tft.setTextSize(2);
-
-    tft.drawString(text,10,10);
-
-}
+    tft.setTextColor(
+        TFT_WHITE,
+        TFT_BLACK
+    );
 
 
+    //tft.setTextSize(1);
 
-void DisplayManager::body(String text)
-{
 
-    tft.setTextColor(TFT_WHITE);
+    tft.drawString(
+        text,
+        x,
+        y
+    );
 
-    tft.setTextSize(1);
-
-    tft.drawString(text,10,50);
 
 }

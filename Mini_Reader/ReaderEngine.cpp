@@ -15,8 +15,7 @@ int page = 0;
 void ReaderEngine::begin()
 {
 
-    book =
-    Files.readBook();
+    book = Files.readBook();
 
 }
 
@@ -25,15 +24,23 @@ void ReaderEngine::begin()
 String ReaderEngine::getPage()
 {
 
+    int charsPerPage = 700;
+
+
     int start =
-    page * 400;
+    page * charsPerPage;
 
 
-    return
+
+    String result =
     book.substring(
         start,
-        start + 400
+        start + charsPerPage
     );
+
+
+
+    return result;
 
 }
 
@@ -42,7 +49,12 @@ String ReaderEngine::getPage()
 void ReaderEngine::next()
 {
 
-    page++;
+    if(
+        (page+1)*700 < book.length()
+    )
+    {
+        page++;
+    }
 
 }
 
@@ -52,6 +64,8 @@ void ReaderEngine::previous()
 {
 
     if(page>0)
+    {
         page--;
+    }
 
 }

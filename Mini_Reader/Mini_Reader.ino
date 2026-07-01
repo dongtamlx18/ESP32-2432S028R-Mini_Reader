@@ -16,13 +16,16 @@ void setup()
     Serial.begin(115200);
 
 
+    Files.begin();
+
+
     Display.begin();
 
 
     Touch.begin();
 
 
-    Files.begin();
+    //Files.begin();
 
 
     Reader.begin();
